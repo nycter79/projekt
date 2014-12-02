@@ -2,11 +2,11 @@ package Entity;
 
 import java.awt.*;
 
-public class Status {
+public class Status2 {
 	
 	private Font titleFont;
 	
-	public Status(Hrac p) {
+	public Status2(Hrac2 p) {
 
 	}
 	
@@ -17,7 +17,7 @@ public class Status {
 		g.setFont(titleFont);
 		g.setColor(Color.RED);
 		g.drawString(
-			"Na tahu hr·Ë ËÌslo 1.",
+			"Na tahu hr·Ë ËÌslo 2.",
 			155,
 			70
 		);
@@ -25,16 +25,3 @@ public class Status {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

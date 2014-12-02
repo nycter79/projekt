@@ -1,9 +1,12 @@
 package Entity;
 
+import Stavy.StavLevelu1;
 import TileMap.*;
 
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -122,6 +125,7 @@ public class Hrac2 extends ObjectAbstr2 {
 	public int getHealth() { return health; }
 	public int getMaxHealth() { return maxHealth; }
 	public int getFire() { return fire; }
+	public int getTahy() { return StavLevelu1.pocetTahu2; }
 	public int getMaxFire() { return maxFire; }
 	
 	public void setDown() {

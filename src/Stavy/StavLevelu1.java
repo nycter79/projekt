@@ -15,11 +15,14 @@ public class StavLevelu1 extends Stavy {
 	public static int pocetTahu=5;
 	public static int pocetTahu2=0;
 	public boolean tah=true;
-	public boolean tah2=true;
+	public boolean tah2=false;
 	private Hrac player;
 	private Hrac2 player2;
 
-	//private Status hud;
+	private Status hud;
+	private Hud hud12;
+	private Status2 hud2;
+	private Hud2 hud22;
 	
 	public StavLevelu1(PoradacStavu gsm){
 		this.gsm = gsm;
@@ -29,7 +32,7 @@ public class StavLevelu1 extends Stavy {
 	public void init(){
 		tileMap = new MapaDlaz(30);
 		tileMap.loadTiles("/Dlazdice/mojetile.gif");
-		tileMap.loadMap("/Mapy/testmap.map");
+		tileMap.loadMap("/Mapy/velka.map");
 		tileMap.setPosition(0, 0);
 		tileMap.setTween(1);
 		
@@ -42,18 +45,28 @@ public class StavLevelu1 extends Stavy {
 		player2.setPosition(193, 194);
 
 
-		//hud = new Status(player);
+		hud = new Status(player);
+		hud12 = new Hud(player);
+		hud2 = new Status2(player2);
+		hud22 = new Hud2(player2);
 	}
 	public void update(){
 
 		player.update();
 		player2.update();
 
-
+		if(tah){
 		tileMap.setPosition(
 				GamePanel.WIDTH / 2 - player.getx(),
 				GamePanel.HEIGHT / 2 - player.gety()
 				);
+		}
+		if(tah2){
+		tileMap.setPosition(
+				GamePanel.WIDTH / 2 - player2.getx(),
+				GamePanel.HEIGHT / 2 - player2.gety()
+				);
+		}
 
 	}
 
@@ -63,25 +76,37 @@ public class StavLevelu1 extends Stavy {
 		tileMap.draw(g);
 		player.draw(g);
 		player2.draw(g);
-		//hud.draw(g);
+		
+		if(tah==true) {hud.draw(g); hud12.draw(g);}
+		if(tah2==true) {hud2.draw(g); hud22.draw(g);}
+
+		
 
 		
 	}
 	public void keyPressed(int k) {
 		
-		if(pocetTahu == 0 && tah==true){
+		if(pocetTahu != 0 && tah2==false){
+			tah=true;
+			tah2=false;		
+		}
+		if(pocetTahu == 0 && tah2==false) {
 			tah=false;
 			tah2=true;
-			pocetTahu2=5;		
+			pocetTahu2=5;
 		}
 		
-		if(pocetTahu2 == 0 && tah2==true){
+		if(pocetTahu2 != 0 && tah==false){
+			tah2=true;
+			tah=false;		
+		}
+		if(pocetTahu2 == 0 && tah==false) {
 			tah2=false;
 			tah=true;
-			pocetTahu=5;		
+			pocetTahu=5;
 		}
 		
-		if(pocetTahu>0){
+		if(tah){
 		if(k == KeyEvent.VK_LEFT) player.setLeft();
 		if(k == KeyEvent.VK_RIGHT) player.setRight();
 		if(k == KeyEvent.VK_UP) player.setUp();
@@ -89,7 +114,7 @@ public class StavLevelu1 extends Stavy {
 		if(k == KeyEvent.VK_SPACE) player.setFiring();
 		}
 		
-		if(pocetTahu2>0){
+		if(tah2){
 		if(k == KeyEvent.VK_LEFT) player2.setLeft();
 		if(k == KeyEvent.VK_RIGHT) player2.setRight();
 		if(k == KeyEvent.VK_UP) player2.setUp();

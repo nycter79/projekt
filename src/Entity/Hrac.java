@@ -1,9 +1,12 @@
 package Entity;
 
+import Stavy.StavLevelu1;
 import TileMap.*;
 
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -30,8 +33,9 @@ public class Hrac extends ObjectAbstr {
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-		2, 2, 2, 2
+		2,2,2,2
 	};
+
 	
 	// animation actions
 	private static final int UP = 0;
@@ -62,19 +66,19 @@ public class Hrac extends ObjectAbstr {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Hrac/polda.gif"
+					"/Hrac/tank.gif"
 				)
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
-			for(int i = 0; i < 4; i++) {
+			for(int i = 0; i < 6; i++) {
 				
 				BufferedImage[] bi =
 					new BufferedImage[numFrames[i]];
 				
 				for(int j = 0; j < numFrames[i]; j++) {
 					
-					if(i != 4) {
+					if(i != 8) {
 						bi[j] = spritesheet.getSubimage(
 								j * width,
 								i * height,
@@ -104,8 +108,8 @@ public class Hrac extends ObjectAbstr {
 		
 		
 		animation = new Animace();
-		animation.setFrames(sprites.get(RIGHT));
-		animation.setDelay(400);
+		animation.setFrames(sprites.get(UP));
+		animation.setDelay(70);
 		
 	}
 	
@@ -122,6 +126,7 @@ public class Hrac extends ObjectAbstr {
 	public int getHealth() { return health; }
 	public int getMaxHealth() { return maxHealth; }
 	public int getFire() { return fire; }
+	public int getTahy() { return StavLevelu1.pocetTahu; }
 	public int getMaxFire() { return maxFire; }
 	
 	public void setDown() {

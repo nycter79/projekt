@@ -20,7 +20,7 @@ public class Strela extends ObjectAbstr {
 		
 		super(tm);
 		
-		moveSpeed = 3;
+		moveSpeed = 1;
 		width = 30;
 		height = 30;
 		cwidth = 14;
@@ -91,10 +91,10 @@ public class Strela extends ObjectAbstr {
 	}
 	
 	public void setHit() {
-		if(hit) return;
-		hit = true;
 		animation.setFrames(hitSprites);
 		animation.setDelay(70);
+		if(hit) return;
+		hit = true;
 		xdest = 0;
 	}
 	
@@ -108,6 +108,7 @@ public class Strela extends ObjectAbstr {
 			setRight2();
 			if(tileMap.getType(rowTile, colTile + 1) == Dlazdice.BLOCKED) {
 				setHit();
+				animation.update();
 			}
 			
 		}
