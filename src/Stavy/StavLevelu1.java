@@ -2,6 +2,7 @@ package Stavy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.concurrent.TimeUnit;
 
 import Entity.*;
 import Main.GamePanel;
@@ -23,6 +24,7 @@ public class StavLevelu1 extends Stavy {
 	private Hud hud12;
 	private Status2 hud2;
 	private Hud2 hud22;
+	//private TimerHud timer11;
 	
 	public StavLevelu1(PoradacStavu gsm){
 		this.gsm = gsm;
@@ -51,6 +53,51 @@ public class StavLevelu1 extends Stavy {
 		hud22 = new Hud2(player2);
 	}
 	public void update(){
+		
+		if(pocetTahu > 0 && tah2==false){
+			tah=true;
+			tah2=false;	
+			pocetTahu2++;
+		}
+		
+		/*if(pocetTahu == 10 && tah2==true) {
+
+			try {
+				TimeUnit.SECONDS.sleep(2);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}*/
+		
+		if(pocetTahu == 0 && tah2==false) {
+			tah=false;
+			tah2=true;
+			pocetTahu2=5;
+
+		}
+
+		
+		if(pocetTahu2 > 0 && tah==false){
+			tah2=true;
+			tah=false;		
+			pocetTahu++;
+		}
+			
+			/*if(pocetTahu2 == 10 && tah==true) {
+
+				try {
+					TimeUnit.SECONDS.sleep(2);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+		}*/
+			
+		if(pocetTahu2 == 0 && tah==false) {
+			tah2=false;
+			tah=true;
+			pocetTahu=5;
+		}
 
 		player.update();
 		player2.update();
@@ -67,6 +114,10 @@ public class StavLevelu1 extends Stavy {
 				GamePanel.HEIGHT / 2 - player2.gety()
 				);
 		}
+		
+
+		
+
 
 	}
 
@@ -77,34 +128,19 @@ public class StavLevelu1 extends Stavy {
 		player.draw(g);
 		player2.draw(g);
 		
+		
 		if(tah==true) {hud.draw(g); hud12.draw(g);}
 		if(tah2==true) {hud2.draw(g); hud22.draw(g);}
+		
 
 		
+
 
 		
 	}
 	public void keyPressed(int k) {
 		
-		if(pocetTahu != 0 && tah2==false){
-			tah=true;
-			tah2=false;		
-		}
-		if(pocetTahu == 0 && tah2==false) {
-			tah=false;
-			tah2=true;
-			pocetTahu2=5;
-		}
-		
-		if(pocetTahu2 != 0 && tah==false){
-			tah2=true;
-			tah=false;		
-		}
-		if(pocetTahu2 == 0 && tah==false) {
-			tah2=false;
-			tah=true;
-			pocetTahu=5;
-		}
+
 		
 		if(tah){
 		if(k == KeyEvent.VK_LEFT) player.setLeft();
@@ -121,6 +157,7 @@ public class StavLevelu1 extends Stavy {
 		if(k == KeyEvent.VK_DOWN) player2.setDown();
 		if(k == KeyEvent.VK_SPACE) player2.setFiring();
 		}
+		
 
 	}
 	
