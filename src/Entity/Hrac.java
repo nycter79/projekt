@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 public class Hrac extends ObjectAbstr {
 	
-	public int health;
+	public static int health;
 	private int maxHealth;
 	private int fire;
 	private int maxFire;
@@ -21,6 +21,9 @@ public class Hrac extends ObjectAbstr {
 	//private boolean dead;
 	
 	public static boolean crush2=false;
+	
+	public static int myxx;
+	public static int myyy;
 
 	
 	// fireball
@@ -33,15 +36,16 @@ public class Hrac extends ObjectAbstr {
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-		2,2,2,2
+		2,2,2,2,4
 	};
 
 	
 	// animation actions
-	private static final int UP = 0;
+	private static final int UP = 3;
 	private static final int RIGHT = 1;
 	private static final int DOWN = 2;
-	private static final int LEFT = 3;
+	private static final int LEFT = 0;
+	private static final int SLASH = 4;
 	
 	public Hrac(MapaDlaz tm) {
 		
@@ -55,9 +59,9 @@ public class Hrac extends ObjectAbstr {
 		moveSpeed = 3;
 		
 		health = maxHealth = 5;
-		fire = maxFire = 2500;
+		fire = maxFire = 300;
 		
-		fireCost = 200;
+		fireCost = 100;
 		//fireBallDamage = 5;
 		fireBalls = new ArrayList<Strela>();
 		
@@ -66,19 +70,19 @@ public class Hrac extends ObjectAbstr {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Hrac/tank.gif"
+					"/Hrac/knight.gif"
 				)
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
-			for(int i = 0; i < 6; i++) {
+			for(int i = 0; i < 5; i++) {
 				
 				BufferedImage[] bi =
 					new BufferedImage[numFrames[i]];
 				
 				for(int j = 0; j < numFrames[i]; j++) {
 					
-					if(i != 8) {
+					if(i != 5) {
 						bi[j] = spritesheet.getSubimage(
 								j * width,
 								i * height,
@@ -108,8 +112,8 @@ public class Hrac extends ObjectAbstr {
 		
 		
 		animation = new Animace();
-		animation.setFrames(sprites.get(UP));
-		animation.setDelay(70);
+		animation.setFrames(sprites.get(RIGHT));
+		animation.setDelay(100);
 		
 	}
 	
@@ -128,6 +132,9 @@ public class Hrac extends ObjectAbstr {
 	public int getFire() { return fire; }
 	public int getTahy() { return StavLevelu1.pocetTahu; }
 	public int getMaxFire() { return maxFire; }
+	
+	public int getmyx() { return myxx; }
+	public int getmyy() { return myyy; }
 	
 	public void setDown() {
 		super.setDown();
@@ -176,17 +183,21 @@ public class Hrac extends ObjectAbstr {
 	
 	public void update() {
 		
-		// update position
+		animation.update();
 		super.update();
 		
+		myxx = x;
+		myyy = y;
 		
 		if(faceLeft) {
 				animation.setFrames(sprites.get(LEFT));
 				animation.setDelay(100);	
 		}
 		if(faceRight) {
-			animation.setFrames(sprites.get(RIGHT));
-			animation.setDelay(100);	
+
+			animation.setFrames(sprites.get(SLASH));
+			animation.setDelay(50);
+			width = 60;
 		}
 		if(faceUp) {
 			animation.setFrames(sprites.get(UP));
@@ -206,8 +217,6 @@ public class Hrac extends ObjectAbstr {
 						Strela fb = new Strela(tileMap);
 						fb.setPosition(x, y);
 						fireBalls.add(fb);
-						FireX=fb.getx();
-						FireY=fb.gety();
 						stopFiring();
 					}
 				}
@@ -221,6 +230,8 @@ public class Hrac extends ObjectAbstr {
 						i--;
 							}
 				}	
+				
+				animation.update();
 	}
 
 

@@ -102,6 +102,12 @@ public class Strela extends ObjectAbstr {
 	public boolean shouldRemove() { return remove; }
 	
 	public void update() {
+
+		if(x == Hrac2.myx && y == Hrac2.myy) {
+			setHit();
+			Hrac2.health = Hrac2.health-1;
+		}
+
 		
 		if(Hrac.R){
 			
@@ -110,7 +116,6 @@ public class Strela extends ObjectAbstr {
 				setHit();
 				animation.update();
 			}
-			
 		}
 		if(Hrac.L){
 			
@@ -137,6 +142,8 @@ public class Strela extends ObjectAbstr {
 		}
 		
 		super.update();
+		
+		
 	
 		animation.update();
 		

@@ -103,6 +103,11 @@ public class Strela2 extends ObjectAbstr2 {
 	
 	public void update() {
 		
+		if(x == Hrac.myxx && y == Hrac.myyy){
+			setHit();
+			Hrac.health = Hrac.health-1;
+		}
+		
 		if(Hrac2.R){
 			
 			setRight2();

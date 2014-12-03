@@ -13,8 +13,6 @@ public class MenuStav extends Stavy{
 	private int currentChoice = 0;
 	private String[] options = {
 			"Hra",
-			"Policajt",
-			"Zlodej",
 			"Konec"
 	};
 	
@@ -25,13 +23,13 @@ public class MenuStav extends Stavy{
 	public MenuStav(PoradacStavu gsm) {
 		this.gsm = gsm;
 		try{
-			bg = new Pozadi("/Pozadi/menu.jpg", 1);
+			bg = new Pozadi("/Pozadi/dungeon2.jpg", 1);
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Century Gothic",
-			Font.BOLD, 35);
+					Font.BOLD | Font.ITALIC, 40);
 			
-			font = new Font("Arial", Font.PLAIN, 16);
+			font = new Font("Arial", Font.BOLD | Font.ITALIC, 25);
 		} 
 		catch(Exception e){
 		e.printStackTrace();	
@@ -47,16 +45,16 @@ public class MenuStav extends Stavy{
 		
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Útìk", 220, 70);
+		g.drawString("DUNGEON", 180, 70);
 		
 		g.setFont(font);
 		for(int i = 0; i < options.length; i++){
 			if(i == currentChoice) {
 				g.setColor(Color.GREEN);
 			}
-			else g.setColor(Color.RED);
+			else g.setColor(Color.GRAY);
 			
-			g.drawString(options[i], 240, 140 + i * 15);
+			g.drawString(options[i], 240, 140 + i * 25);
 			
 		}
 		

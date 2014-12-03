@@ -12,14 +12,14 @@ public class Status {
 	
 	public void draw(Graphics2D g) {
 		
-		titleFont = new Font("Century Gothic",
-		Font.BOLD, 25);
+		titleFont = new Font("Challange Extra Bold",
+		Font.BOLD | Font.ITALIC, 20);
 		g.setFont(titleFont);
-		g.setColor(Color.RED);
+		g.setColor(Color.BLACK);
 		g.drawString(
 			"Na tahu hr·Ë ËÌslo 1.",
-			155,
-			70
+			210,
+			50
 		);
 		
 	}

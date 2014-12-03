@@ -13,10 +13,14 @@ public class StavLevelu1 extends Stavy {
 	private MapaDlaz tileMap;
 	private Pozadi bg;
 	
-	public static int pocetTahu=5;
+	public static int pocetTahu=8;
 	public static int pocetTahu2=0;
 	public boolean tah=true;
 	public boolean tah2=false;
+	public boolean timer1=false;
+	public boolean timer2=false;
+	public boolean death=false;
+	public boolean death2=false;
 	private Hrac player;
 	private Hrac2 player2;
 
@@ -24,7 +28,9 @@ public class StavLevelu1 extends Stavy {
 	private Hud hud12;
 	private Status2 hud2;
 	private Hud2 hud22;
-	//private TimerHud timer11;
+	private Vyhra1 vyhra1;
+	private Vyhra2 vyhra2;
+
 	
 	public StavLevelu1(PoradacStavu gsm){
 		this.gsm = gsm;
@@ -41,18 +47,23 @@ public class StavLevelu1 extends Stavy {
 		bg = new Pozadi("/Pozadi/trava.bmp",0.1);
 		
 		player = new Hrac(tileMap);
-		player.setPosition(43, 44);
+		player.setPosition(43,44 );
 		
 		player2 = new Hrac2(tileMap);
-		player2.setPosition(193, 194);
+		player2.setPosition(43,44);
 
 
 		hud = new Status(player);
 		hud12 = new Hud(player);
 		hud2 = new Status2(player2);
 		hud22 = new Hud2(player2);
+		vyhra1 = new Vyhra1(player);
+		vyhra2 = new Vyhra2(player2);
 	}
 	public void update(){
+		
+		if(Hrac.health==0) death=true;
+		if(Hrac2.health==0) death2=true;
 		
 		if(pocetTahu > 0 && tah2==false){
 			tah=true;
@@ -60,19 +71,23 @@ public class StavLevelu1 extends Stavy {
 			pocetTahu2++;
 		}
 		
-		/*if(pocetTahu == 10 && tah2==true) {
+		if(pocetTahu == 10 && tah2==true) {
 
 			try {
+				tah2=false;
+				timer2=true;
 				TimeUnit.SECONDS.sleep(2);
+				timer1=false;
+				tah2=true;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}*/
+		}
 		
 		if(pocetTahu == 0 && tah2==false) {
 			tah=false;
 			tah2=true;
-			pocetTahu2=5;
+			pocetTahu2=8;
 
 		}
 
@@ -83,20 +98,24 @@ public class StavLevelu1 extends Stavy {
 			pocetTahu++;
 		}
 			
-			/*if(pocetTahu2 == 10 && tah==true) {
+			if(pocetTahu2 == 10 && tah==true) {
 
 				try {
+					tah=false;
+					timer1=true;
 					TimeUnit.SECONDS.sleep(2);
+					timer2=false;
+					tah=true;
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				
-		}*/
+		}
 			
 		if(pocetTahu2 == 0 && tah==false) {
 			tah2=false;
 			tah=true;
-			pocetTahu=5;
+			pocetTahu=8;
 		}
 
 		player.update();
@@ -114,10 +133,6 @@ public class StavLevelu1 extends Stavy {
 				GamePanel.HEIGHT / 2 - player2.gety()
 				);
 		}
-		
-
-		
-
 
 	}
 
@@ -125,15 +140,22 @@ public class StavLevelu1 extends Stavy {
 	
 		bg.draw(g);
 		tileMap.draw(g);
-		player.draw(g);
-		player2.draw(g);
-		
-		
-		if(tah==true) {hud.draw(g); hud12.draw(g);}
-		if(tah2==true) {hud2.draw(g); hud22.draw(g);}
-		
+		if(death==false){
+			player.draw(g);
+		}
+
+		if(death2==false){
+			//player2.draw(g);
+		}
 
 		
+		
+	//	if(tah==true && timer1==true && death==false && death2==false) {hud.draw(g); hud12.draw(g);}
+		if(tah2==true && timer2==true && death2==false && death==false) {hud2.draw(g); hud22.draw(g);}
+		
+
+		if(death==true) vyhra2.draw(g);
+		if(death2==true) vyhra1.draw(g);
 
 
 		
@@ -142,20 +164,20 @@ public class StavLevelu1 extends Stavy {
 		
 
 		
-		if(tah){
+		if(tah && death==false && death2==false){
 		if(k == KeyEvent.VK_LEFT) player.setLeft();
 		if(k == KeyEvent.VK_RIGHT) player.setRight();
 		if(k == KeyEvent.VK_UP) player.setUp();
 		if(k == KeyEvent.VK_DOWN) player.setDown(); 
-		if(k == KeyEvent.VK_SPACE) player.setFiring();
+		if(k == KeyEvent.VK_SPACE) {player.setFiring();pocetTahu--;}
 		}
 		
-		if(tah2){
+		if(tah2 && death2==false && death==false){
 		if(k == KeyEvent.VK_LEFT) player2.setLeft();
 		if(k == KeyEvent.VK_RIGHT) player2.setRight();
 		if(k == KeyEvent.VK_UP) player2.setUp();
 		if(k == KeyEvent.VK_DOWN) player2.setDown();
-		if(k == KeyEvent.VK_SPACE) player2.setFiring();
+		if(k == KeyEvent.VK_SPACE) {player2.setFiring();pocetTahu2--;}
 		}
 		
 

@@ -12,12 +12,12 @@ import java.awt.image.BufferedImage;
 
 public class Hrac2 extends ObjectAbstr2 {
 	
-	public int health;
+	public static int health;
 	private int maxHealth;
 	private int fire;
 	private int maxFire;
-	public int FireX;
-	public int FireY;
+	public static int myx;
+	public static int myy;
 	//private boolean dead;
 	
 	public static boolean crush2=false;
@@ -37,10 +37,10 @@ public class Hrac2 extends ObjectAbstr2 {
 	};
 	
 	// animation actions
-	private static final int UP = 0;
+	private static final int UP = 3;
 	private static final int RIGHT = 1;
 	private static final int DOWN = 2;
-	private static final int LEFT = 3;
+	private static final int LEFT = 0;
 	
 	public Hrac2(MapaDlaz tm) {
 		
@@ -54,9 +54,9 @@ public class Hrac2 extends ObjectAbstr2 {
 		moveSpeed = 3;
 		
 		health = maxHealth = 5;
-		fire = maxFire = 2500;
+		fire = maxFire = 300;
 		
-		fireCost = 200;
+		fireCost = 100;
 		//fireBallDamage = 5;
 		fireBalls = new ArrayList<Strela2>();
 		
@@ -65,7 +65,7 @@ public class Hrac2 extends ObjectAbstr2 {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Hrac/polda.gif"
+					"/Hrac/knight.gif"
 				)
 			);
 			
@@ -170,14 +170,16 @@ public class Hrac2 extends ObjectAbstr2 {
 	
 
 	
-	public int getFireX() { return FireX; }
-	public int getFireY() { return FireY; }
+	public int getmyx() { return myx; }
+	public int getmyy() { return myy; }
 	
 	public void update() {
 		
 		// update position
 		super.update();
 		
+		myx = x;
+		myy = y;
 		
 		if(faceLeft) {
 				animation.setFrames(sprites.get(LEFT));
@@ -205,8 +207,7 @@ public class Hrac2 extends ObjectAbstr2 {
 						Strela2 fb = new Strela2(tileMap);
 						fb.setPosition(x, y);
 						fireBalls.add(fb);
-						FireX=fb.getx();
-						FireY=fb.gety();
+
 						stopFiring();
 					}
 				}

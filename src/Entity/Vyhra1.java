@@ -2,22 +2,22 @@ package Entity;
 
 import java.awt.*;
 
-public class Status2 {
+public class Vyhra1 {
 	
 	private Font titleFont;
 	
-	public Status2(Hrac2 p) {
+	public  Vyhra1(Hrac p) {
 
 	}
 	
 	public void draw(Graphics2D g) {
 		
 		titleFont = new Font("Century Gothic",
-		Font.BOLD | Font.ITALIC, 20);
+				Font.BOLD | Font.ITALIC, 20);
 		g.setFont(titleFont);
 		g.setColor(Color.BLACK);
 		g.drawString(
-			"Na tahu hr·Ë ËÌslo 2.",
+			"Vyhr·l hr·Ë ËÌslo 1.",
 			210,
 			50
 		);
@@ -25,3 +25,16 @@ public class Status2 {
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

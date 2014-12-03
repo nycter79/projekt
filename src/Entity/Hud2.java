@@ -31,7 +31,7 @@ public class Hud2 {
 		
 		g.drawImage(image, 0, 10, null);
 		g.setFont(font);
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.drawString(
 			player2.getHealth() + "/" + player2.getMaxHealth(),
 			30,
@@ -43,7 +43,7 @@ public class Hud2 {
 			45
 		);
 		g.drawString(
-				player2.getTahy() + "/" + "5",
+				player2.getTahy() + "/" + "8",
 				30,
 				65
 			);
