@@ -20,7 +20,7 @@ public class Strela extends ObjectAbstr {
 		
 		super(tm);
 		
-		moveSpeed = 1;
+		moveSpeed = 4;
 		width = 30;
 		height = 30;
 		cwidth = 14;
@@ -143,13 +143,11 @@ public class Strela extends ObjectAbstr {
 		
 		super.update();
 		
-		
-	
-		animation.update();
-		
 		if(hit) {
 			remove = true;
 		}
+		
+		animation.update();
 	}
 	
 	

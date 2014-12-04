@@ -20,7 +20,7 @@ public class Strela2 extends ObjectAbstr2 {
 		
 		super(tm);
 		
-		moveSpeed = 3;
+		moveSpeed = 4;
 		width = 30;
 		height = 30;
 		cwidth = 14;

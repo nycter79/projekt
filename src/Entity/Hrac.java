@@ -41,10 +41,11 @@ public class Hrac extends ObjectAbstr {
 
 	
 	// animation actions
-	private static final int UP = 3;
+
+	private static final int LEFT = 0;
 	private static final int RIGHT = 1;
 	private static final int DOWN = 2;
-	private static final int LEFT = 0;
+	private static final int UP = 3;
 	private static final int SLASH = 4;
 	
 	public Hrac(MapaDlaz tm) {
@@ -56,7 +57,7 @@ public class Hrac extends ObjectAbstr {
 		cwidth = 20;
 		cheight = 20;
 		
-		moveSpeed = 3;
+		moveSpeed = 2;
 		
 		health = maxHealth = 5;
 		fire = maxFire = 300;
@@ -82,7 +83,7 @@ public class Hrac extends ObjectAbstr {
 				
 				for(int j = 0; j < numFrames[i]; j++) {
 					
-					if(i != 5) {
+					if(i != 6) {
 						bi[j] = spritesheet.getSubimage(
 								j * width,
 								i * height,
@@ -113,7 +114,7 @@ public class Hrac extends ObjectAbstr {
 		
 		animation = new Animace();
 		animation.setFrames(sprites.get(RIGHT));
-		animation.setDelay(100);
+		animation.setDelay(70);
 		
 	}
 	
@@ -183,30 +184,29 @@ public class Hrac extends ObjectAbstr {
 	
 	public void update() {
 		
-		animation.update();
 		super.update();
+		
+		
 		
 		myxx = x;
 		myyy = y;
 		
 		if(faceLeft) {
-				animation.setFrames(sprites.get(LEFT));
-				animation.setDelay(100);	
-		}
-		if(faceRight) {
-
-			animation.setFrames(sprites.get(SLASH));
-			animation.setDelay(50);
-			width = 60;
-		}
-		if(faceUp) {
-			animation.setFrames(sprites.get(UP));
+			animation.setFrames(sprites.get(LEFT));
 			animation.setDelay(100);	
-		}
-		if(faceDown) {
-			animation.setFrames(sprites.get(DOWN));
-			animation.setDelay(100);	
-		}
+	}
+	if(faceRight) {
+		animation.setFrames(sprites.get(RIGHT));
+		animation.setDelay(100);	
+	}
+	if(faceUp) {
+		animation.setFrames(sprites.get(UP));
+		animation.setDelay(100);	
+	}
+	if(faceDown) {
+		animation.setFrames(sprites.get(DOWN));
+		animation.setDelay(100);	
+	}
 	
 				// fireBall attack
 				fire += 1;
@@ -231,11 +231,22 @@ public class Hrac extends ObjectAbstr {
 							}
 				}	
 				
-				animation.update();
+				/*
+				if(faceRight) {
+
+					animation.setFrames(sprites.get(RIGHT));
+					animation.setDelay(100);
+					width = 30;
+			}*/
+
+			animation.update();
+				
 	}
 
 
 	public void draw(Graphics2D g) {
+		
+		
 		
 		for(int i = 0; i < fireBalls.size(); i++) {
 			fireBalls.get(i).draw(g);

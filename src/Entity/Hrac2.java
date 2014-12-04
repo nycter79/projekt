@@ -33,7 +33,7 @@ public class Hrac2 extends ObjectAbstr2 {
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-		2, 2, 2, 2
+		2, 2, 2, 2 ,4
 	};
 	
 	// animation actions
@@ -41,6 +41,7 @@ public class Hrac2 extends ObjectAbstr2 {
 	private static final int RIGHT = 1;
 	private static final int DOWN = 2;
 	private static final int LEFT = 0;
+	private static final int SLASH = 4;
 	
 	public Hrac2(MapaDlaz tm) {
 		
@@ -51,7 +52,7 @@ public class Hrac2 extends ObjectAbstr2 {
 		cwidth = 20;
 		cheight = 20;
 		
-		moveSpeed = 3;
+		moveSpeed = 2;
 		
 		health = maxHealth = 5;
 		fire = maxFire = 300;
@@ -65,19 +66,19 @@ public class Hrac2 extends ObjectAbstr2 {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Hrac/knight.gif"
+					"/Hrac/knight2.gif"
 				)
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
-			for(int i = 0; i < 4; i++) {
+			for(int i = 0; i < 5; i++) {
 				
 				BufferedImage[] bi =
 					new BufferedImage[numFrames[i]];
 				
 				for(int j = 0; j < numFrames[i]; j++) {
 					
-					if(i != 4) {
+					if(i != 6) {
 						bi[j] = spritesheet.getSubimage(
 								j * width,
 								i * height,
@@ -107,7 +108,7 @@ public class Hrac2 extends ObjectAbstr2 {
 		
 		
 		animation = new Animace();
-		animation.setFrames(sprites.get(RIGHT));
+		animation.setFrames(sprites.get(LEFT));
 		animation.setDelay(400);
 		
 	}

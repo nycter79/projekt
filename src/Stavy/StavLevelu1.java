@@ -39,18 +39,18 @@ public class StavLevelu1 extends Stavy {
 	
 	public void init(){
 		tileMap = new MapaDlaz(30);
-		tileMap.loadTiles("/Dlazdice/mojetile.gif");
-		tileMap.loadMap("/Mapy/velka.map");
+		tileMap.loadTiles("/Dlazdice/ground.gif");
+		tileMap.loadMap("/Mapy/dung.map");
 		tileMap.setPosition(0, 0);
 		tileMap.setTween(1);
 		
 		bg = new Pozadi("/Pozadi/trava.bmp",0.1);
 		
 		player = new Hrac(tileMap);
-		player.setPosition(43,44 );
+		player.setPosition(75,75 );
 		
 		player2 = new Hrac2(tileMap);
-		player2.setPosition(43,44);
+		player2.setPosition(855,885);
 
 
 		hud = new Status(player);
@@ -145,12 +145,12 @@ public class StavLevelu1 extends Stavy {
 		}
 
 		if(death2==false){
-			//player2.draw(g);
+			player2.draw(g);
 		}
 
 		
 		
-	//	if(tah==true && timer1==true && death==false && death2==false) {hud.draw(g); hud12.draw(g);}
+		if(tah==true && timer1==true && death==false && death2==false) {hud.draw(g); hud12.draw(g);}
 		if(tah2==true && timer2==true && death2==false && death==false) {hud2.draw(g); hud22.draw(g);}
 		
 

@@ -268,7 +268,7 @@ public abstract class ObjectAbstr {
 		}
 		
 		// update animation
-		animation.update();
+		//animation.update();
 		
 	}
 	
