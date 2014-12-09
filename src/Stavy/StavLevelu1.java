@@ -248,6 +248,9 @@ public class StavLevelu1 extends Stavy {
         catch(Exception e) {  
             System.out.println("Exception caught: "+e.getMessage());  
         } 
+        
+        player.update();
+        player2.update();
 		
 	}
 	
