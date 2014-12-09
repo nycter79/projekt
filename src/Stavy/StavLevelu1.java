@@ -2,6 +2,7 @@ package Stavy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.*;
 import java.util.concurrent.TimeUnit;
 
 import Entity.*;
@@ -180,7 +181,8 @@ public class StavLevelu1 extends Stavy {
 		if(k == KeyEvent.VK_SPACE) {player2.setFiring();pocetTahu2--;}
 		}
 		
-
+		if(k == KeyEvent.VK_F5) saveGame();
+		if(k == KeyEvent.VK_F6) loadGame();
 	}
 	
 	public void keyReleased(int k) {
@@ -191,6 +193,59 @@ public class StavLevelu1 extends Stavy {
 		if(k == KeyEvent.VK_DOWN) player.setDown();
 		if(k == KeyEvent.VK_SPACE) player.stopFiring();
 		*/
+	}
+	
+	public void saveGame() {	
+		
+        PrintWriter save = null; 
+        
+        try  
+        {   
+            save = new PrintWriter(new FileWriter(new File("savedgame.txt"), true));  
+
+            save.println(player.getmyx());  
+            save.println(player.getmyy());  
+            
+            save.println(player2.getmyx());  
+            save.println(player2.getmyy());   
+
+            save.flush();              
+            save.close();  
+            save = null;  
+              
+        }  
+        catch(Exception e) {  
+            System.out.println("Exception caught: "+e.getMessage());  
+        } 
+	 
+	}
+	
+	public void loadGame() {
+		
+		LineNumberReader load = null;  
+		
+        try  
+        {  
+            load = new LineNumberReader(new FileReader(new File("savedgame.txt")));  
+            
+            String x, y;
+            
+            x = load.readLine();   
+            y = load.readLine();  
+            player.setPosition(Integer.parseInt(x), Integer.parseInt(y));
+            
+            x = load.readLine();   
+            y = load.readLine();  
+            player2.setPosition(Integer.parseInt(x), Integer.parseInt(y));
+              
+            load.close();  
+            load = null;   
+              
+        }  
+        catch(Exception e) {  
+            System.out.println("Exception caught: "+e.getMessage());  
+        } 
+		
 	}
 	
 }
