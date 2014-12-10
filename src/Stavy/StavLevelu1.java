@@ -375,6 +375,38 @@ public class StavLevelu1 extends Stavy {
             save.flush(); 
             save.println(player2.getmyy());   
             save.flush(); 
+            
+            save.println(pocetTahu);   
+            save.flush(); 
+            save.println(pocetTahu2);   
+            save.flush(); 
+            
+            save.println(tah);   
+            save.flush(); 
+            save.println(tah2);   
+            save.flush(); 
+            
+            save.println(timer1);   
+            save.flush(); 
+            save.println(timer2);   
+            save.flush(); 
+            
+            save.println(death);   
+            save.flush(); 
+            save.println(death2);   
+            save.flush(); 
+            save.println(death3);   
+            save.flush(); 
+            save.println(death4);   
+            save.flush(); 
+            save.println(death5);   
+            save.flush(); 
+            save.println(death6);   
+            save.flush(); 
+            save.println(death7);   
+            save.flush(); 
+            save.println(death8);   
+            save.flush(); 
              
             save.close();  
             save = null;  
@@ -403,6 +435,24 @@ public class StavLevelu1 extends Stavy {
             x = load.readLine();   
             y = load.readLine();  
             player2.setPosition(Integer.parseInt(x), Integer.parseInt(y));
+            
+            pocetTahu = Integer.parseInt(load.readLine());
+            pocetTahu2 = Integer.parseInt(load.readLine());
+            
+            tah = Boolean.valueOf(load.readLine());
+            tah2 = Boolean.valueOf(load.readLine());
+            
+            timer1 = Boolean.valueOf(load.readLine());
+            timer2 = Boolean.valueOf(load.readLine());
+            
+            death = Boolean.valueOf(load.readLine());
+            death2 = Boolean.valueOf(load.readLine());
+            death3 = Boolean.valueOf(load.readLine());
+            death4 = Boolean.valueOf(load.readLine());
+            death5 = Boolean.valueOf(load.readLine());
+            death6 = Boolean.valueOf(load.readLine());
+            death7 = Boolean.valueOf(load.readLine());
+            death8 = Boolean.valueOf(load.readLine());
               
             load.close();  
             load = null;   
@@ -414,6 +464,18 @@ public class StavLevelu1 extends Stavy {
         
         player.update();
         player2.update();
+        enemy1.update();
+		enemy2.update();
+		enemy3.update();
+		enemy4.update();
+		enemy5.update();
+		enemy6.update();
+        
+        try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
