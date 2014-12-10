@@ -10,14 +10,14 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Hrac2 extends ObjectAbstr2 {
+public class Enemy extends EnemyAbstr {
 	
-	public static int health;
+	public int health;
 	private int maxHealth;
 	private int fire;
 	private int maxFire;
-	public static int myx;
-	public static int myy;
+	public  int myx;
+	public  int myy;
 	//private boolean dead;
 	
 	public static boolean crush2=false;
@@ -27,7 +27,7 @@ public class Hrac2 extends ObjectAbstr2 {
 	private boolean firing;
 	private int fireCost;
 	//private int fireBallDamage;
-	private ArrayList<Strela2> fireBalls;
+	private ArrayList<Strela3> fireBalls;
 	
 	
 	// animations
@@ -43,7 +43,7 @@ public class Hrac2 extends ObjectAbstr2 {
 	private static final int LEFT = 0;
 	//private static final int SLASH = 4;
 	
-	public Hrac2(MapaDlaz tm) {
+	public Enemy(MapaDlaz tm) {
 		
 		super(tm);
 		
@@ -54,12 +54,12 @@ public class Hrac2 extends ObjectAbstr2 {
 		
 		moveSpeed = 2;
 		
-		health = maxHealth = 5;
-		fire = maxFire = 300;
+		health = maxHealth = 2;
+		fire = maxFire = 101;
 		
 		fireCost = 100;
 		//fireBallDamage = 5;
-		fireBalls = new ArrayList<Strela2>();
+		fireBalls = new ArrayList<Strela3>();
 		
 		// load sprites
 		try {
@@ -205,7 +205,7 @@ public class Hrac2 extends ObjectAbstr2 {
 				if(firing) {
 					if(fire > fireCost) {
 						fire -= fireCost;
-						Strela2 fb = new Strela2(tileMap);
+						Strela3 fb = new Strela3(tileMap);
 						fb.setPosition(x, y);
 						fireBalls.add(fb);
 

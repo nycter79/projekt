@@ -43,7 +43,7 @@ public class Hud2 {
 			45
 		);
 		g.drawString(
-				player2.getTahy() + "/" + "8",
+				player2.getTahy() + "/" + "20",
 				30,
 				65
 			);

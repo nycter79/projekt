@@ -46,7 +46,7 @@ public class Hrac extends ObjectAbstr {
 	private static final int RIGHT = 1;
 	private static final int DOWN = 2;
 	private static final int UP = 3;
-	private static final int SLASH = 4;
+	//private static final int SLASH = 4;
 	
 	public Hrac(MapaDlaz tm) {
 		

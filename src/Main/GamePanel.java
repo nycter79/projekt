@@ -2,7 +2,10 @@ package Main;
 
 import javax.swing.JPanel;
 
+import Entity.Hrac;
+import Entity.Hrac2;
 import Stavy.PoradacStavu;
+import Stavy.StavLevelu1;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,7 +14,7 @@ import java.awt.image.BufferedImage;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel
-implements Runnable, KeyListener{
+implements Runnable, KeyListener,MouseListener{
 	
 	
 	//Dimension
@@ -47,6 +50,7 @@ implements Runnable, KeyListener{
 		if(thread==null) {
 			thread = new Thread(this);
 			addKeyListener(this);
+			addMouseListener(this);
 			thread.start();
 		}
 	}
@@ -115,8 +119,70 @@ implements Runnable, KeyListener{
 		gsm.keyPressed(key.getKeyCode());
 	}
 	public void keyReleased(KeyEvent key) {
-		gsm.keyReleased(key.getKeyCode());
+		//gsm.keyReleased(key.getKeyCode());
 	}
 	
+	int prevX=0;
+	int prevY=0;
+
+	@Override
+	public void mousePressed(MouseEvent evt){
+		
+		
+        Point pos;
+        pos = evt.getPoint();
+		int mX=pos.x/2;
+		int mY=pos.y/2;
+		
+		if(StavLevelu1.tah==true){
+		if(mX-Hrac.myxx > 15 && mX-Hrac.myxx < 40 && 
+				mY-Hrac.myyy < 5 && Hrac.myyy-mY < 5){
+			StavLevelu1.player.setRight();
+		}
+		if(mX-Hrac.myxx < -15 && mX-Hrac.myxx > -40 && 
+				mY-Hrac.myyy < 5 && Hrac.myyy-mY < 5){
+			StavLevelu1.player.setLeft();
+		}
+		if(mY-Hrac.myyy > 15 && mY-Hrac.myyy < 40 && 
+				mX-Hrac.myxx < 5 && Hrac.myxx-mX < 5){
+			StavLevelu1.player.setDown();
+		}
+		if(mY-Hrac.myyy < -15 && mY-Hrac.myyy > -40 && 
+				mX-Hrac.myxx < 5 && Hrac.myxx-mX < 5){
+			StavLevelu1.player.setUp();
+		}
+	
+	}
+		if(StavLevelu1.tah2==true){
+		if(mX-Hrac2.myx > 15 && mX-Hrac2.myx < 40 && 
+				mY-Hrac2.myy < 5 && Hrac2.myy-mY < 5){
+			StavLevelu1.player2.setRight();
+		}
+		if(mX-Hrac2.myx < -15 && mX-Hrac2.myx > -40 && 
+				mY-Hrac2.myy < 5 && Hrac2.myy-mY < 5){
+			StavLevelu1.player2.setLeft();
+		}
+		if(mY-Hrac2.myy > 15 && mY-Hrac2.myy < 40 && 
+				mX-Hrac2.myx < 5 && Hrac2.myx-mX < 5){
+			StavLevelu1.player2.setDown();
+		}
+		if(mY-Hrac2.myy < -15 && mY-Hrac2.myy > -40 && 
+				mX-Hrac2.myx < 5 && Hrac2.myx-mX < 5){
+			StavLevelu1.player2.setUp();
+		}
+	}
+}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {}
 
 }

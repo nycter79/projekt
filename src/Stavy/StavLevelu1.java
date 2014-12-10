@@ -2,8 +2,10 @@ package Stavy;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
+import javax.swing.SwingUtilities;
 
 import Entity.*;
 import Main.GamePanel;
@@ -14,16 +16,29 @@ public class StavLevelu1 extends Stavy {
 	private MapaDlaz tileMap;
 	private Pozadi bg;
 	
-	public static int pocetTahu=8;
+	public static int pocetTahu=20;
 	public static int pocetTahu2=0;
-	public boolean tah=true;
-	public boolean tah2=false;
+	public static boolean tah=true;
+	public static boolean tah2=false;
 	public boolean timer1=false;
 	public boolean timer2=false;
 	public boolean death=false;
 	public boolean death2=false;
-	private Hrac player;
-	private Hrac2 player2;
+	public boolean death3=false;
+	public boolean death4=false;
+	public boolean death5=false;
+	public boolean death6=false;
+	public boolean death7=false;
+	public boolean death8=false;
+	public int enemyPom = 0;
+	public static Hrac player;
+	public static Hrac2 player2;
+	public static Enemy enemy1;
+	public static Enemy enemy2;
+	public static Enemy enemy3;
+	public static Enemy enemy4;
+	public static Enemy enemy5;
+	public static Enemy enemy6;
 
 	private Status hud;
 	private Hud hud12;
@@ -41,19 +56,36 @@ public class StavLevelu1 extends Stavy {
 	public void init(){
 		tileMap = new MapaDlaz(30);
 		tileMap.loadTiles("/Dlazdice/ground.gif");
-		tileMap.loadMap("/Mapy/dung.map");
+		tileMap.loadMap("/Mapy/dung2.map");
 		tileMap.setPosition(0, 0);
 		tileMap.setTween(1);
 		
 		bg = new Pozadi("/Pozadi/trava.bmp",0.1);
 		
 		player = new Hrac(tileMap);
-		player.setPosition(75,75 );
+		player.setPosition(75,435);
 		
 		player2 = new Hrac2(tileMap);
-		player2.setPosition(855,885);
+		player2.setPosition(555,435);
+		
+		enemy1 = new Enemy(tileMap);
+		enemy1.setPosition(105,225);
 
+		enemy2 = new Enemy(tileMap);
+		enemy2.setPosition(405,195);
+		
+		enemy3 = new Enemy(tileMap);
+		enemy3.setPosition(255,195);
 
+		enemy4 = new Enemy(tileMap);
+		enemy4.setPosition(345,375);
+		
+		enemy5 = new Enemy(tileMap);
+		enemy5.setPosition(75,105);
+
+		enemy6 = new Enemy(tileMap);
+		enemy6.setPosition(345,105);
+		
 		hud = new Status(player);
 		hud12 = new Hud(player);
 		hud2 = new Status2(player2);
@@ -65,6 +97,12 @@ public class StavLevelu1 extends Stavy {
 		
 		if(Hrac.health==0) death=true;
 		if(Hrac2.health==0) death2=true;
+		if(enemy1.health==0) death3=true;
+		if(enemy2.health==0) death4=true;
+		if(enemy3.health==0) death5=true;
+		if(enemy4.health==0) death6=true;
+		if(enemy5.health==0) death7=true;
+		if(enemy6.health==0) death8=true;
 		
 		if(pocetTahu > 0 && tah2==false){
 			tah=true;
@@ -88,7 +126,7 @@ public class StavLevelu1 extends Stavy {
 		if(pocetTahu == 0 && tah2==false) {
 			tah=false;
 			tah2=true;
-			pocetTahu2=8;
+			pocetTahu2=20;
 
 		}
 
@@ -116,12 +154,19 @@ public class StavLevelu1 extends Stavy {
 		if(pocetTahu2 == 0 && tah==false) {
 			tah2=false;
 			tah=true;
-			pocetTahu=8;
+			pocetTahu=20;
 		}
 
 		player.update();
 		player2.update();
-
+		enemy1.update();
+		enemy2.update();
+		enemy3.update();
+		enemy4.update();
+		enemy5.update();
+		enemy6.update();
+		
+		/*
 		if(tah){
 		tileMap.setPosition(
 				GamePanel.WIDTH / 2 - player.getx(),
@@ -134,8 +179,85 @@ public class StavLevelu1 extends Stavy {
 				GamePanel.HEIGHT / 2 - player2.gety()
 				);
 		}
+		*/
+		if(enemyPom<300){
+			enemy1.setRight();
+			if(death3==false)enemy1.setFiring();
+			enemy2.setRight();
+			if(death4==false)enemy2.setFiring();
+			enemy3.setRight();
+			if(death5==false)enemy3.setFiring();
+			enemy4.setRight();
+			if(death6==false)enemy4.setFiring();
+			enemy5.setRight();
+			if(death7==false)enemy5.setFiring();
+			enemy6.setRight();
+			if(death8==false)enemy6.setFiring();
+		}
+		
+		if(enemyPom<600 && enemyPom>300){
+			enemy1.setLeft();
+			if(death3==false)enemy1.setFiring();
+			enemy2.setLeft();
+			if(death4==false)enemy2.setFiring();
+			enemy3.setLeft();
+			if(death5==false)enemy3.setFiring();
+			enemy4.setLeft();
+			if(death6==false)enemy4.setFiring();
+			enemy5.setLeft();
+			if(death7==false)enemy5.setFiring();
+			enemy6.setLeft();
+			if(death8==false)enemy6.setFiring();
+		}
+		
+		if(enemyPom<900 && enemyPom>600){
+			enemy1.setDown();
+			if(death3==false)	enemy1.setFiring();
+			enemy2.setDown();
+			if(death4==false)	enemy2.setFiring();
+			enemy3.setDown();
+			if(death5==false)	enemy3.setFiring();
+			enemy4.setDown();
+			if(death6==false)	enemy4.setFiring();
+			enemy5.setDown();
+			if(death7==false)enemy5.setFiring();
+			enemy6.setDown();
+			if(death8==false)enemy6.setFiring();
+		}
+		
+		if(enemyPom<1200 && enemyPom>900){
+			enemy1.setUp();
+			if(death3==false) enemy1.setFiring();
+			enemy2.setUp();
+			if(death4==false)enemy2.setFiring();
+			enemy3.setUp();
+			if(death5==false)enemy3.setFiring();
+			enemy4.setUp();
+			if(death6==false)enemy4.setFiring();
+			enemy5.setUp();
+			if(death7==false)enemy5.setFiring();
+			enemy6.setUp();
+			if(death8==false)enemy6.setFiring();
+		}
+		
+		if(enemyPom==1200){
+			
+			enemyPom=0;
+		}
+		enemyPom++;
+		
+		/*
+		PointerInfo a = MouseInfo.getPointerInfo();
+		Point b = a.getLocation();
+		int x = (int) b.getX();
+		int y = (int) b.getY();
+		System.out.print(x + " " + y+"\n");
+		*/
+		
 
 	}
+	
+
 
 	public void draw(Graphics2D g){
 	
@@ -159,7 +281,31 @@ public class StavLevelu1 extends Stavy {
 		if(death2==true) vyhra1.draw(g);
 
 
+
+		if(death3==false){
+			enemy1.draw(g);
+		}
+		if(death4==false){
+			enemy2.draw(g);
+		}
+		if(death5==false){
+			enemy3.draw(g);
+		}
+		if(death6==false){
+			enemy4.draw(g);
+		}
+
+		if(death7==false){
+			enemy5.draw(g);
+		}
+		if(death8==false){
+			enemy6.draw(g);
+		}
+
+
+
 		
+
 	}
 	public void keyPressed(int k) {
 		
@@ -180,10 +326,27 @@ public class StavLevelu1 extends Stavy {
 		if(k == KeyEvent.VK_DOWN) player2.setDown();
 		if(k == KeyEvent.VK_SPACE) {player2.setFiring();pocetTahu2--;}
 		}
-		
+
 		if(k == KeyEvent.VK_F5) saveGame();
 		if(k == KeyEvent.VK_F6) loadGame();
+
 	}
+	
+	/*
+	int prevX=0;
+	int prevY=0;
+	public void mousePressed(MouseEvent evt){
+	    prevX = evt.getXOnScreen();
+	    prevY = evt.getYOnScreen();
+	    prevY=prevY/3;
+	    prevX=prevX/3;
+		System.out.print(prevX + " " + prevY+"\n");
+	}
+*/
+
+	
+	
+	
 	
 	public void keyReleased(int k) {
 		/*
@@ -194,7 +357,7 @@ public class StavLevelu1 extends Stavy {
 		if(k == KeyEvent.VK_SPACE) player.stopFiring();
 		*/
 	}
-	
+
 	public void saveGame() {	
 		
         PrintWriter save = null; 

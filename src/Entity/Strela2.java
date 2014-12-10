@@ -1,5 +1,6 @@
 package Entity;
 
+import Stavy.StavLevelu1;
 import TileMap.Dlazdice;
 import TileMap.MapaDlaz;
 
@@ -106,6 +107,38 @@ public class Strela2 extends ObjectAbstr2 {
 		if(x == Hrac.myxx && y == Hrac.myyy){
 			setHit();
 			Hrac.health = Hrac.health-1;
+		}
+		
+		if(x == StavLevelu1.enemy1.myx && y == StavLevelu1.enemy1.myy) {
+			setHit();
+			StavLevelu1.enemy1.health = StavLevelu1.enemy1.health-1;
+		}
+		
+		if(x == StavLevelu1.enemy2.myx && y == StavLevelu1.enemy2.myy) {
+			setHit();
+			StavLevelu1.enemy2.health = StavLevelu1.enemy2.health-1;
+		}
+		if(x == StavLevelu1.enemy1.myx && y == StavLevelu1.enemy1.myy) {
+			setHit();
+			StavLevelu1.enemy1.health = StavLevelu1.enemy1.health-1;
+		}
+		
+		if(x == StavLevelu1.enemy3.myx && y == StavLevelu1.enemy3.myy) {
+			setHit();
+			StavLevelu1.enemy3.health = StavLevelu1.enemy3.health-1;
+		}
+		if(x == StavLevelu1.enemy4.myx && y == StavLevelu1.enemy4.myy) {
+			setHit();
+			StavLevelu1.enemy4.health = StavLevelu1.enemy4.health-1;
+		}
+		
+		if(x == StavLevelu1.enemy5.myx && y == StavLevelu1.enemy5.myy) {
+			setHit();
+			StavLevelu1.enemy5.health = StavLevelu1.enemy5.health-1;
+		}
+		if(x == StavLevelu1.enemy6.myx && y == StavLevelu1.enemy6.myy) {
+			setHit();
+			StavLevelu1.enemy6.health = StavLevelu1.enemy6.health-1;
 		}
 		
 		if(Hrac2.R){
