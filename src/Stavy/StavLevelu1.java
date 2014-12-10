@@ -201,7 +201,7 @@ public class StavLevelu1 extends Stavy {
         
         try  
         {   
-            save = new PrintWriter(new FileWriter(new File("/Save/savedgame.txt"), false));  
+            save = new PrintWriter(new FileWriter(new File("C:/Users/Tomáš Wagner/Disk Google/vsb/2_1/PJ1/projekt/Resources/Save/savedgame.txt"), false));  
 
             save.println(player.getmyx());  
             save.flush(); 
@@ -229,7 +229,7 @@ public class StavLevelu1 extends Stavy {
 		
         try  
         {  
-            load = new LineNumberReader(new FileReader(new File("/Save/savedgame.txt")));  
+            load = new LineNumberReader(new FileReader(new File("C:/Users/Tomáš Wagner/Disk Google/vsb/2_1/PJ1/projekt/Resources/Save/savedgame.txt")));  
             
             String x, y;
             
