@@ -33,7 +33,7 @@ public class Enemy extends EnemyAbstr {
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-		2, 2, 2, 2 ,4
+		1, 1, 1, 1
 	};
 	
 	// animation actions
@@ -66,12 +66,12 @@ public class Enemy extends EnemyAbstr {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Hrac/knight2.gif"
+					"/Hrac/skeleton.gif"
 				)
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
-			for(int i = 0; i < 5; i++) {
+			for(int i = 0; i < 4; i++) {
 				
 				BufferedImage[] bi =
 					new BufferedImage[numFrames[i]];
