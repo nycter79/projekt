@@ -10,14 +10,14 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Enemy extends EnemyAbstr {
+public class Hrac2 extends ObjectAbstr2 {
 	
-	public int health;
+	public static int health;
 	private int maxHealth;
 	private int fire;
 	private int maxFire;
-	public  int myx;
-	public  int myy;
+	public static int myx;
+	public static int myy;
 	//private boolean dead;
 	
 	public static boolean crush2=false;
@@ -27,13 +27,13 @@ public class Enemy extends EnemyAbstr {
 	private boolean firing;
 	private int fireCost;
 	//private int fireBallDamage;
-	private ArrayList<Strela3> fireBalls;
+	private ArrayList<Strela2> fireBalls;
 	
 	
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-		1, 1, 1, 1
+		2, 2, 2, 2 ,4
 	};
 	
 	// animation actions
@@ -43,7 +43,7 @@ public class Enemy extends EnemyAbstr {
 	private static final int LEFT = 0;
 	//private static final int SLASH = 4;
 	
-	public Enemy(MapaDlaz tm) {
+	public Hrac2(MapaDlaz tm) {
 		
 		super(tm);
 		
@@ -54,24 +54,24 @@ public class Enemy extends EnemyAbstr {
 		
 		moveSpeed = 2;
 		
-		health = maxHealth = 2;
-		fire = maxFire = 101;
+		health = maxHealth = 5;
+		fire = maxFire = 300;
 		
 		fireCost = 100;
 		//fireBallDamage = 5;
-		fireBalls = new ArrayList<Strela3>();
+		fireBalls = new ArrayList<Strela2>();
 		
 		// load sprites
 		try {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Hrac/skeleton.gif"
+					"/Hrac/knight2.gif"
 				)
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
-			for(int i = 0; i < 4; i++) {
+			for(int i = 0; i < 5; i++) {
 				
 				BufferedImage[] bi =
 					new BufferedImage[numFrames[i]];
@@ -205,7 +205,7 @@ public class Enemy extends EnemyAbstr {
 				if(firing) {
 					if(fire > fireCost) {
 						fire -= fireCost;
-						Strela3 fb = new Strela3(tileMap);
+						Strela2 fb = new Strela2(tileMap);
 						fb.setPosition(x, y);
 						fireBalls.add(fb);
 

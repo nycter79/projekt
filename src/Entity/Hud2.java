@@ -5,15 +5,15 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-public class Hud {
+public class Hud2 {
 	
-	private Hrac player;
+	private Hrac2 player2;
 	
 	private BufferedImage image;
 	private Font font;
 	
-	public Hud(Hrac p) {
-		player = p;
+	public Hud2(Hrac2 p) {
+		player2 = p;
 		try {
 			image = ImageIO.read(
 				getClass().getResourceAsStream(
@@ -33,17 +33,17 @@ public class Hud {
 		g.setFont(font);
 		g.setColor(Color.BLACK);
 		g.drawString(
-			player.getHealth() + "/" + player.getMaxHealth(),
+			player2.getHealth() + "/" + player2.getMaxHealth(),
 			30,
 			25
 		);
 		g.drawString(
-			player.getFire() / 100 + "/" + player.getMaxFire() / 100,
+			player2.getFire() / 100 + "/" + player2.getMaxFire() / 100,
 			30,
 			45
 		);
 		g.drawString(
-				player.getTahy() + "/" + "20",
+				player2.getTahy() + "/" + "20",
 				30,
 				65
 			);

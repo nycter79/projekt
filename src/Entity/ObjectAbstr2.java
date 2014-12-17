@@ -11,7 +11,7 @@ import Stavy.StavLevelu1;
 import TileMap.Dlazdice;
 import TileMap.MapaDlaz;
 
-public abstract class ObjectAbstr {
+public abstract class ObjectAbstr2 {
 	
 	// dimensions
 	protected int width;
@@ -59,7 +59,7 @@ public abstract class ObjectAbstr {
 	
 	protected boolean crush = false;
 	
-	public ObjectAbstr(MapaDlaz tm) {
+	public ObjectAbstr2(MapaDlaz tm) {
 		tileMap = tm;
 		tileSize = tileMap.getTileSize();
 	}
@@ -151,7 +151,7 @@ public abstract class ObjectAbstr {
 			}
 			else {
 				xdest = x - 30;
-				StavLevelu1.pocetTahu--;
+				StavLevelu1.pocetTahu2--;
 			}
 		}
 		if(right) {
@@ -160,7 +160,7 @@ public abstract class ObjectAbstr {
 			}
 			else {
 				xdest = x + 30;
-				StavLevelu1.pocetTahu--;
+				StavLevelu1.pocetTahu2--;
 			}
 		}
 		if(up) {
@@ -169,7 +169,7 @@ public abstract class ObjectAbstr {
 			}
 			else {
 				ydest = y - 30;
-				StavLevelu1.pocetTahu--;
+				StavLevelu1.pocetTahu2--;
 			}
 		}
 		if(down) {
@@ -178,7 +178,7 @@ public abstract class ObjectAbstr {
 			}
 			else {
 				ydest = y + 30;
-				StavLevelu1.pocetTahu--;
+				StavLevelu1.pocetTahu2--;
 			}
 		}
 		
@@ -186,7 +186,7 @@ public abstract class ObjectAbstr {
 		
 	}
 	
-	public boolean validateNextPosition2() {
+public boolean validateNextPosition2() {
 		
 		if(moving) return true;
 		
@@ -268,7 +268,7 @@ public abstract class ObjectAbstr {
 		}
 		
 		// update animation
-		//animation.update();
+		animation.update();
 		
 	}
 	

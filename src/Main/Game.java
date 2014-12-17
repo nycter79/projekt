@@ -1,6 +1,9 @@
 package Main;
 
+
 import javax.swing.JFrame;
+
+import Entity.sound;
 
 public class Game {
 	
@@ -12,6 +15,8 @@ public class Game {
 		window.setResizable(false);
 		window.pack();
 		window.setVisible(true);
-		
+
+		//sound.BACK.loop();
+
 	}
 }

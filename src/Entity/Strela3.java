@@ -1,6 +1,5 @@
 package Entity;
 
-import Stavy.StavLevelu1;
 import TileMap.Dlazdice;
 import TileMap.MapaDlaz;
 
@@ -9,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-public class Strela extends ObjectAbstr {
+public class Strela3 extends EnemyAbstr {
 	
 	private boolean hit;
 	private boolean remove;
@@ -17,11 +16,11 @@ public class Strela extends ObjectAbstr {
 	private BufferedImage[] sprites;
 	private BufferedImage[] hitSprites;
 	
-	public Strela(MapaDlaz tm) {
+	public Strela3(MapaDlaz tm) {
 		
 		super(tm);
 		
-		moveSpeed = 4;
+		moveSpeed = 8;
 		width = 30;
 		height = 30;
 		cwidth = 14;
@@ -92,10 +91,10 @@ public class Strela extends ObjectAbstr {
 	}
 	
 	public void setHit() {
-		animation.setFrames(hitSprites);
-		animation.setDelay(70);
 		if(hit) return;
 		hit = true;
+		animation.setFrames(hitSprites);
+		animation.setDelay(70);
 		xdest = 0;
 	}
 	
@@ -103,55 +102,26 @@ public class Strela extends ObjectAbstr {
 	public boolean shouldRemove() { return remove; }
 	
 	public void update() {
-
-		if(x == Hrac2.myx && y == Hrac2.myy) {
+		
+		if(x == Hrac.myxx && y == Hrac.myyy){
+			setHit();
+			Hrac.health = Hrac.health-1;
+		}
+		
+		if(x == Hrac2.myx && y == Hrac2.myy){
 			setHit();
 			Hrac2.health = Hrac2.health-1;
 		}
-		
-		if(x == StavLevelu1.enemy1.myx && y == StavLevelu1.enemy1.myy) {
-			setHit();
-			StavLevelu1.enemy1.health = StavLevelu1.enemy1.health-1;
-		}
-		
-		if(x == StavLevelu1.enemy2.myx && y == StavLevelu1.enemy2.myy) {
-			setHit();
-			StavLevelu1.enemy2.health = StavLevelu1.enemy2.health-1;
-		}
-		if(x == StavLevelu1.enemy1.myx && y == StavLevelu1.enemy1.myy) {
-			setHit();
-			StavLevelu1.enemy1.health = StavLevelu1.enemy1.health-1;
-		}
-		
-		if(x == StavLevelu1.enemy3.myx && y == StavLevelu1.enemy3.myy) {
-			setHit();
-			StavLevelu1.enemy3.health = StavLevelu1.enemy3.health-1;
-		}
-		if(x == StavLevelu1.enemy4.myx && y == StavLevelu1.enemy4.myy) {
-			setHit();
-			StavLevelu1.enemy4.health = StavLevelu1.enemy4.health-1;
-		}
-		
-		if(x == StavLevelu1.enemy5.myx && y == StavLevelu1.enemy5.myy) {
-			setHit();
-			StavLevelu1.enemy5.health = StavLevelu1.enemy5.health-1;
-		}
-		if(x == StavLevelu1.enemy6.myx && y == StavLevelu1.enemy6.myy) {
-			setHit();
-			StavLevelu1.enemy6.health = StavLevelu1.enemy6.health-1;
-		}
 
-
-		
-		if(Hrac.R){
+		if(Enemy.R){
 			
 			setRight2();
 			if(tileMap.getType(rowTile, colTile + 1) == Dlazdice.BLOCKED) {
 				setHit();
-				animation.update();
 			}
+			
 		}
-		if(Hrac.L){
+		if(Enemy.L){
 			
 			setLeft2();
 			if(tileMap.getType(rowTile, colTile - 1) == Dlazdice.BLOCKED) {
@@ -159,7 +129,7 @@ public class Strela extends ObjectAbstr {
 			}
 			
 		}
-		if(Hrac.U){
+		if(Enemy.U){
 			
 			setUp2();
 			if(tileMap.getType(rowTile -1, colTile) == Dlazdice.BLOCKED) {
@@ -167,7 +137,7 @@ public class Strela extends ObjectAbstr {
 			}
 			
 		}
-		if(Hrac.D){
+		if(Enemy.D){
 			
 			setDown2();
 			if( tileMap.getType(rowTile + 1, colTile) == Dlazdice.BLOCKED) {
@@ -176,12 +146,12 @@ public class Strela extends ObjectAbstr {
 		}
 		
 		super.update();
+	
+		animation.update();
 		
 		if(hit) {
 			remove = true;
 		}
-		
-		animation.update();
 	}
 	
 	

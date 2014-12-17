@@ -4,6 +4,8 @@ import TileMap.Pozadi;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 
 public class MenuStav extends Stavy{
 	
@@ -86,8 +88,17 @@ public class MenuStav extends Stavy{
 			}
 		}
 	}
-	public void keyReleased(int k) {}
+	public void keyReleased(int k) {
+		
+	}
 	
+	/*
+	int prevX=0;
+	int prevY=0;
+	public void mousePressed(MouseEvent evt){
+	    prevX = evt.getXOnScreen();
+	    prevY = evt.getYOnScreen();
+		System.out.print(prevX + " " + prevY+"\n");
+	}
+*/
 }
-
-
