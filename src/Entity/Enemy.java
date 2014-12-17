@@ -1,6 +1,6 @@
 package Entity;
 
-import Stavy.StavLevelu1;
+import Stavy.Level1;
 import TileMap.*;
 
 import java.util.ArrayList;
@@ -15,19 +15,21 @@ public class Enemy extends EnemyAbstr {
 	public int health;
 	private int maxHealth;
 	private int fire;
+	private boolean remove;
 	private int maxFire;
+	public boolean death;
 	public  int myx;
 	public  int myy;
 	//private boolean dead;
 	
-	public static boolean crush2=false;
-
+	public  boolean crush2=false;
+	
 	
 	// fireball
 	private boolean firing;
 	private int fireCost;
 	//private int fireBallDamage;
-	private ArrayList<Strela3> fireBalls;
+	private ArrayList<EnemyFire> fireBalls;
 	
 	
 	// animations
@@ -56,10 +58,9 @@ public class Enemy extends EnemyAbstr {
 		
 		health = maxHealth = 2;
 		fire = maxFire = 101;
-		
+		death=false;
 		fireCost = 100;
-		//fireBallDamage = 5;
-		fireBalls = new ArrayList<Strela3>();
+		fireBalls = new ArrayList<EnemyFire>();
 		
 		// load sprites
 		try {
@@ -78,7 +79,7 @@ public class Enemy extends EnemyAbstr {
 				
 				for(int j = 0; j < numFrames[i]; j++) {
 					
-					if(i != 6) {
+					if(i != 5) {
 						bi[j] = spritesheet.getSubimage(
 								j * width,
 								i * height,
@@ -126,7 +127,7 @@ public class Enemy extends EnemyAbstr {
 	public int getHealth() { return health; }
 	public int getMaxHealth() { return maxHealth; }
 	public int getFire() { return fire; }
-	public int getTahy() { return StavLevelu1.pocetTahu2; }
+	public int getTahy() { return Level1.pocetTahu2; }
 	public int getMaxFire() { return maxFire; }
 	
 	public void setDown() {
@@ -162,10 +163,8 @@ public class Enemy extends EnemyAbstr {
 
 	}
 	
-	public static void crush2() { 
-		
+	public  void crush2() { 
 		crush2=true;
-
 		}
 	
 	
@@ -205,7 +204,7 @@ public class Enemy extends EnemyAbstr {
 				if(firing) {
 					if(fire > fireCost) {
 						fire -= fireCost;
-						Strela3 fb = new Strela3(tileMap);
+						EnemyFire fb = new EnemyFire(tileMap);
 						fb.setPosition(x, y);
 						fireBalls.add(fb);
 
@@ -233,6 +232,12 @@ public class Enemy extends EnemyAbstr {
 		
 		super.draw(g);
 		
+	}
+
+
+	public boolean shouldRemove() {
+		if(health == 0) remove = true;
+		return remove;
 	}
 }
 	

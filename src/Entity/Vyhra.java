@@ -2,26 +2,41 @@ package Entity;
 
 import java.awt.*;
 
-public class Status2 {
+public class Vyhra {
 	
 	private Font titleFont;
 	
-	public Status2(Hrac2 p) {
+	public  Vyhra() {
 
 	}
 	
 	public void draw(Graphics2D g) {
 		
+			
 		titleFont = new Font("Century Gothic",
-		Font.BOLD | Font.ITALIC, 20);
+				Font.BOLD | Font.ITALIC, 20);
 		g.setFont(titleFont);
 		g.setColor(Color.BLACK);
 		g.drawString(
-			"Na tahu hráè èíslo 2.",
+			"Hra skonèila",
 			210,
 			50
 		);
 		
 	}
 	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

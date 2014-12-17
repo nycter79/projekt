@@ -1,6 +1,6 @@
 package Entity;
 
-import Stavy.StavLevelu1;
+import Stavy.Level1;
 import TileMap.Dlazdice;
 import TileMap.MapaDlaz;
 
@@ -92,8 +92,6 @@ public class Strela extends ObjectAbstr {
 	}
 	
 	public void setHit() {
-		animation.setFrames(hitSprites);
-		animation.setDelay(70);
 		if(hit) return;
 		hit = true;
 		xdest = 0;
@@ -103,45 +101,25 @@ public class Strela extends ObjectAbstr {
 	public boolean shouldRemove() { return remove; }
 	
 	public void update() {
-
-		if(x == Hrac2.myx && y == Hrac2.myy) {
-			setHit();
-			Hrac2.health = Hrac2.health-1;
-		}
 		
-		if(x == StavLevelu1.enemy1.myx && y == StavLevelu1.enemy1.myy) {
-			setHit();
-			StavLevelu1.enemy1.health = StavLevelu1.enemy1.health-1;
+		if(Level1.tah2==true){
+			if(x == Level1.players.get(0).myxx && y == Level1.players.get(0).myyy) {
+				setHit();
+				Level1.players.get(0).health = Level1.players.get(0).health-1;
+			}
 		}
-		
-		if(x == StavLevelu1.enemy2.myx && y == StavLevelu1.enemy2.myy) {
-			setHit();
-			StavLevelu1.enemy2.health = StavLevelu1.enemy2.health-1;
+		if(Level1.tah==true){
+			if(x == Level1.players.get(1).myxx && y == Level1.players.get(1).myyy) {
+				setHit();
+				Level1.players.get(1).health = Level1.players.get(1).health-1;
+			}
 		}
-		if(x == StavLevelu1.enemy1.myx && y == StavLevelu1.enemy1.myy) {
-			setHit();
-			StavLevelu1.enemy1.health = StavLevelu1.enemy1.health-1;
+		for(int i = 0; i < Level1.enemies.size(); i++){
+			if(x == Level1.enemies.get(i).myx && y == Level1.enemies.get(i).myy) {
+				setHit();
+				Level1.enemies.get(i).health = Level1.enemies.get(i).health-1;
+			}
 		}
-		
-		if(x == StavLevelu1.enemy3.myx && y == StavLevelu1.enemy3.myy) {
-			setHit();
-			StavLevelu1.enemy3.health = StavLevelu1.enemy3.health-1;
-		}
-		if(x == StavLevelu1.enemy4.myx && y == StavLevelu1.enemy4.myy) {
-			setHit();
-			StavLevelu1.enemy4.health = StavLevelu1.enemy4.health-1;
-		}
-		
-		if(x == StavLevelu1.enemy5.myx && y == StavLevelu1.enemy5.myy) {
-			setHit();
-			StavLevelu1.enemy5.health = StavLevelu1.enemy5.health-1;
-		}
-		if(x == StavLevelu1.enemy6.myx && y == StavLevelu1.enemy6.myy) {
-			setHit();
-			StavLevelu1.enemy6.health = StavLevelu1.enemy6.health-1;
-		}
-
-
 		
 		if(Hrac.R){
 			

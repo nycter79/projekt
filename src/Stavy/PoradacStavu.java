@@ -18,7 +18,7 @@ public class PoradacStavu {
 		gameStates = new ArrayList<Stavy>();
 		currentState = 0;
 		gameStates.add(new MenuStav(this));
-		gameStates.add(new StavLevelu1(this));
+		gameStates.add(new Level1(this));
 	}
 	
 

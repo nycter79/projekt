@@ -7,7 +7,7 @@ package Entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import Stavy.StavLevelu1;
+import Stavy.Level1;
 import TileMap.Dlazdice;
 import TileMap.MapaDlaz;
 
@@ -54,7 +54,7 @@ public abstract class ObjectAbstr {
 	protected int ymap;
 	
 	// animation
-	protected Animace animation;
+	public Animace animation;
 	protected int currentAnimation;
 	
 	protected boolean crush = false;
@@ -151,7 +151,8 @@ public abstract class ObjectAbstr {
 			}
 			else {
 				xdest = x - 30;
-				StavLevelu1.pocetTahu--;
+				Level1.pocetTahu--;
+				Level1.pocetTahu2--;
 			}
 		}
 		if(right) {
@@ -160,7 +161,8 @@ public abstract class ObjectAbstr {
 			}
 			else {
 				xdest = x + 30;
-				StavLevelu1.pocetTahu--;
+				Level1.pocetTahu--;
+				Level1.pocetTahu2--;
 			}
 		}
 		if(up) {
@@ -169,7 +171,8 @@ public abstract class ObjectAbstr {
 			}
 			else {
 				ydest = y - 30;
-				StavLevelu1.pocetTahu--;
+				Level1.pocetTahu--;
+				Level1.pocetTahu2--;
 			}
 		}
 		if(down) {
@@ -178,7 +181,8 @@ public abstract class ObjectAbstr {
 			}
 			else {
 				ydest = y + 30;
-				StavLevelu1.pocetTahu--;
+				Level1.pocetTahu--;
+				Level1.pocetTahu2--;
 			}
 		}
 		
