@@ -1,6 +1,6 @@
 package Entity;
 
-import Stavy.StavLevelu1;
+import Stavy.Level1;
 import TileMap.*;
 
 import java.util.ArrayList;
@@ -12,29 +12,29 @@ import java.awt.image.BufferedImage;
 
 public class Hrac extends ObjectAbstr {
 	
-	public static int health;
+	public int health;
 	private int maxHealth;
 	private int fire;
 	private int maxFire;
+	private boolean remove;
 	public int FireX;
 	public int FireY;
 	//private boolean dead;
 	
 	public static boolean crush2=false;
 	
-	public static int myxx;
-	public static int myyy;
+	public int myxx;
+	public int myyy;
 
 	
 	// fireball
 	private boolean firing;
 	private int fireCost;
-	//private int fireBallDamage;
 	private ArrayList<Strela> fireBalls;
 	
 	
 	// animations
-	private ArrayList<BufferedImage[]> sprites;
+	public ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
 		2,2,2,2,4
 	};
@@ -42,13 +42,12 @@ public class Hrac extends ObjectAbstr {
 	
 	// animation actions
 
-	private static final int LEFT = 0;
-	private static final int RIGHT = 1;
-	private static final int DOWN = 2;
-	private static final int UP = 3;
-	//private static final int SLASH = 4;
+	public static final int LEFT = 0;
+	public static final int RIGHT = 1;
+	public static final int DOWN = 2;
+	public static final int UP = 3;
 	
-	public Hrac(MapaDlaz tm) {
+	public Hrac(MapaDlaz tm, String sprite) {
 		
 		super(tm);
 		
@@ -57,13 +56,12 @@ public class Hrac extends ObjectAbstr {
 		cwidth = 20;
 		cheight = 20;
 		
-		moveSpeed = 2;
+		moveSpeed = 5;
 		
 		health = maxHealth = 5;
 		fire = maxFire = 300;
 		
 		fireCost = 100;
-		//fireBallDamage = 5;
 		fireBalls = new ArrayList<Strela>();
 		
 		// load sprites
@@ -71,7 +69,7 @@ public class Hrac extends ObjectAbstr {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Hrac/knight.gif"
+					sprite
 				)
 			);
 			
@@ -131,7 +129,8 @@ public class Hrac extends ObjectAbstr {
 	public int getHealth() { return health; }
 	public int getMaxHealth() { return maxHealth; }
 	public int getFire() { return fire; }
-	public int getTahy() { return StavLevelu1.pocetTahu; }
+	public int getTahy() { return Level1.pocetTahu; }
+	public int getTahy2() { return Level1.pocetTahu2; }
 	public int getMaxFire() { return maxFire; }
 	
 	public int getmyx() { return myxx; }
@@ -190,23 +189,6 @@ public class Hrac extends ObjectAbstr {
 		
 		myxx = x;
 		myyy = y;
-		
-		if(faceLeft) {
-			animation.setFrames(sprites.get(LEFT));
-			animation.setDelay(100);	
-	}
-	if(faceRight) {
-		animation.setFrames(sprites.get(RIGHT));
-		animation.setDelay(100);	
-	}
-	if(faceUp) {
-		animation.setFrames(sprites.get(UP));
-		animation.setDelay(100);	
-	}
-	if(faceDown) {
-		animation.setFrames(sprites.get(DOWN));
-		animation.setDelay(100);	
-	}
 	
 				// fireBall attack
 				fire += 1;
@@ -230,14 +212,6 @@ public class Hrac extends ObjectAbstr {
 						i--;
 							}
 				}	
-				
-				/*
-				if(faceRight) {
-
-					animation.setFrames(sprites.get(RIGHT));
-					animation.setDelay(100);
-					width = 30;
-			}*/
 
 			animation.update();
 				
@@ -254,6 +228,15 @@ public class Hrac extends ObjectAbstr {
 		
 		super.draw(g);
 		
+	}
+
+
+	public boolean shouldRemove() {
+		if(health == 0){
+			remove = true;
+			Level1.won=true;
+		}
+		return remove;
 	}
 }
 	
